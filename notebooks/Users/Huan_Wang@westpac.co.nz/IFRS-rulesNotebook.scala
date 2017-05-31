@@ -18,7 +18,7 @@ val S_CIF_CIFWASMR_H = sqlContext.read.format("csv")
   .option("inferSchema", "true")
   .option("delimiter", "|")
   .load("dbfs:/mnt/ifrs9/20170519_S_CIF_CIFWASMR_H.dat")
-
+// BIG change test git hub integration something
 val renamed_S_CIF_CIFWASMR_H = S_CIF_CIFWASMR_H.selectExpr("DATE_KEY as DATE_KEY_S_CIF_CIFWASMR_H", "QAXBRNUM_QA00","QAPCUSNM_QA00","QAXACSUF_QA00_1") 
 
 val S_CIF_CIFWAS_MR_A0 = sqlContext.read.format("csv")
@@ -51,8 +51,8 @@ val date_dim_eom = date_dim.selectExpr("DATE_KEY as DATE_KEY_dim", "month_key")
 val cif_wasp_date = cif_wasp.join(date_dim_eom,cif_wasp.col("DATE_KEY_S_WASP_WORFFL")=== date_dim_eom.col("DATE_KEY_dim"))
 
 //this is a df with all the three staging tables and 2 cols from our DW calendar dim 
-val tabletwo = sqlContext.sql("SELECT * FROM cif_wasp_date_table")
-display(tabletwo.select("*"))
+//val tabletwo = sqlContext.sql("SELECT * FROM cif_wasp_date")
+//display(tabletwo.select("*"))
 
 // COMMAND ----------
 
